@@ -70,7 +70,7 @@ int main()
     if (count < i + 1) {
         fprintf(output2, "Граф несвязный");
     }
-    if (count == i + 1) {
+    else {
         fprintf(output2, "Граф связный");
     }
     fclose(output2);
