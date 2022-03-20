@@ -50,20 +50,18 @@ int main()
     }
     count = 1;
     for (int m = 0; m <= i; m++) {
-        count2 = 0;
         for (int n = 0; n < j; n++) {
-            if (s2[m][n] == '1' && count2 == 0) {
-                count++;
-                count2++;
-                s2[n][m] = '0';
-                b = n;
+            for (int b = 0; b < j; b++) {
+                if (s2[m][n] == '1') {
+                    if (s2[m][b] == '1') {
+                        s2[b][n] = '0';
+                        s2[n][b] = '0';
+                    }
+                }
             }
-            else if (s2[m][n] == '1' && count2 != 0) {
+            if (s2[m][n] == '1') {
                 count++;
                 s2[n][m] = '0';
-                s2[b][n] = '0';
-                s2[n][b] = '0';
-                b = n;
             }
         }
     }
