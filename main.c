@@ -6,7 +6,7 @@ int main()
     FILE *input, *output, *output2;
     char a, s[30][30];
     char s2[30][30];
-    int i = 0, j = 0, count = 0, b = 0;
+    int i = 0, j = 0, count = 0, count2 = 0, b = 0;
 
     input = fopen("input.txt", "r"); 
     while (!feof(input)) {
@@ -49,11 +49,21 @@ int main()
         fprintf(output2, "\n");
     }
     count = 1;
-    for (int m = 0; m < i; m++) {
+    for (int m = 0; m <= i; m++) {
+        count2 = 0;
         for (int n = 0; n < j; n++) {
-            if (s2[m][n] == '1') {
+            if (s2[m][n] == '1' && count2 == 0) {
+                count++;
+                count2++;
+                s2[n][m] = '0';
+                b = n;
+            }
+            else if (s2[m][n] == '1' && count2 != 0) {
                 count++;
                 s2[n][m] = '0';
+                s2[b][n] = '0';
+                s2[n][b] = '0';
+                b = n;
             }
         }
     }
