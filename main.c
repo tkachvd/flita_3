@@ -6,7 +6,7 @@ int main()
     FILE *input, *output, *output2;
     char a, s[30][30];
     char s2[30][30];
-    int i = 0, j = 0, count = 0, count2 = 0, b = 0;
+    int i = 0, j = 0, count = 0, b = 0, v = 0;
 
     input = fopen("input.txt", "r"); 
     while (!feof(input)) {
@@ -40,7 +40,7 @@ int main()
     for (int m = 0; m <= i; m++) {
         fprintf(output2, "%d: ", m + 1);
         count = 0;
-        for (int n = 0; n < j; n++) {
+        for (int n = 0; n <= i; n++) {
             if (s2[m][n] == '1') {
                 fprintf(output2, "%d ", n + 1);
                 count++;
@@ -48,28 +48,29 @@ int main()
         }
         fprintf(output2, "\n");
     }
-    count = 1;
-    for (int m = 0; m <= i; m++) {
-        for (int n = 0; n < j; n++) {
-            for (int b = 0; b < j; b++) {
-                if (s2[m][n] == '1') {
-                    if (s2[m][b] == '1') {
-                        s2[b][n] = '0';
-                        s2[n][b] = '0';
-                    }
+    for (int m = 0; m < i; m++) {
+        for (int k = m + 1; k <= i; k++) {
+            count = 0;
+            for (int n = 0; n < j; n++) {
+                if (s[m][n] == '1' && s[k][n] == '1') {
+                    count++;
                 }
             }
-            if (s2[m][n] == '1') {
-                count++;
-                s2[n][m] = '0';
+            if (count > 1) {
+                v = 1;
             }
         }
     }
-    if (count < i + 1) {
-        fprintf(output2, "Граф несвязный");
+    if (v == 1) {
+        fprintf(output2, "Граф не является простым");
     }
     else {
-        fprintf(output2, "Граф связный");
+        if (j > ((i - 1) * i / 2)) {
+            fprintf(output2, "Граф связный");
+        }
+        else {
+            fprintf(output2, "Граф несвязный");
+        }
     }
     fclose(output2);
     output = fopen("output.gv", "w"); 
