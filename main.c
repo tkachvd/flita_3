@@ -68,7 +68,7 @@ int main()
         fprintf(output2, "Граф не является простым");
     }
     else {
-        if (j >= ((i - 2) * (i - 1) / 2)) {
+        if (j > ((i - 2) * (i - 1) / 2)) {
             fprintf(output2, "Граф связный");
         }
         else {
