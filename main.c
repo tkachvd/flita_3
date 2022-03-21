@@ -35,6 +35,9 @@ int main()
                 }
             }
         }
+        if (count == 1) {
+            v = 1;
+        }
     }
     output2 = fopen("output2.txt", "w");
     for (int m = 0; m <= i; m++) {
